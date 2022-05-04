@@ -1,0 +1,54 @@
+{
+  "extends": "./tsconfig-checks.json",
+  "compileOnSave": false,
+  "compilerOptions": {
+    // Language and Environment
+    "target": "es2020",
+
+    // Modules
+    "module": "esnext",
+    "moduleResolution": "node",
+    "rootDir": "./src",
+    "baseUrl": "./src",
+
+    // Emit
+    "declaration": false,
+    "downlevelIteration": true,
+    "emitDeclarationOnly": false,
+    "outDir": "./dist",
+    "removeComments": false,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "importHelpers": true,
+
+    // Interop Constraints
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    // Language and Environment
+    "experimentalDecorators": true,
+    "lib": [
+      "es2020",
+      "dom"
+    ],
+
+    // Completeness
+    "skipLibCheck": true
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "files": [
+    "src/main.ts",
+    "src/polyfills.ts"
+  ],
+  "include": [
+    "src/**/*.spec.ts",
+    "src/**/*.d.ts"
+  ]
+}

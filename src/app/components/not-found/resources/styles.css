@@ -1,0 +1,28 @@
+.message-box {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.message {
+    padding: 30px;
+    width: 100%;
+    text-align: center;
+    background-color: #f2dede;
+}
+
+h1 {
+    font-size: 56px;
+    color: #a94442;
+}
+
+h3 {
+    font-size: 28px;
+    color: #b45d5b;
+}
+
+p {
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 10px;
+}
