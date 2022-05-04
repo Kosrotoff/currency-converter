@@ -22,7 +22,16 @@ h3 {
 }
 
 p {
-    font-weight: bold;
     font-size: 18px;
     margin-top: 10px;
+}
+.error-description {
+    font-weight: bold;
+}
+
+.to-main {
+    color: #61aaea;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
 }

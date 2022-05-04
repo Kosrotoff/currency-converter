@@ -1,4 +1,7 @@
 import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+
+import {ServiceSettings} from '../../../../../services/settings';
 
 
 @Component({
@@ -8,5 +11,11 @@ import {Component} from '@angular/core';
     styleUrls: ['./resources/styles.css']
 })
 export class SigninPage {
-
+    constructor(
+        public router: Router,
+        public settings: ServiceSettings
+    ) {
+        settings.isAuthorized = true;
+        router.navigateByUrl('/');
+    }
 }

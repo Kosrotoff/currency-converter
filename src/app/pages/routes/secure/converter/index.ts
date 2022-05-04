@@ -1,4 +1,7 @@
 import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+
+import {ServiceSettings} from '../../../../services/settings';
 
 
 @Component({
@@ -8,5 +11,9 @@ import {Component} from '@angular/core';
     styleUrls: ['./resources/styles.css']
 })
 export class ConverterPage {
-
+    constructor(
+        public router: Router,
+        public settings: ServiceSettings
+    ) {
+    }
 }

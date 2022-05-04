@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -8,4 +9,6 @@ import {Component} from '@angular/core';
     styleUrls: ['./resources/styles.css']
 })
 export class NotFoundComponent {
+    constructor(private router: Router) {
+    }
 }

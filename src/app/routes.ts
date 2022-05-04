@@ -14,7 +14,7 @@ export const routes: Routes = [
                 loadChildren: () => import('./pages/routes/public/module').then(m => m.PublicModule)
             },
             {
-                path: 'profile',
+                path: '',
                 loadChildren: () =>
                     import('./pages/routes/secure/module').then(m => m.SecureModule)
             }
