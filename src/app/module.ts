@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {Router, RouterModule} from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
 
 import {App} from './components/app';
 import {NotFoundComponent} from './components/not-found';
@@ -10,6 +11,7 @@ import {routes} from './routes';
 
 import {CanActivateViaAuthGuard} from './services/guard';
 import {ServiceSettings} from './services/settings';
+import {CurrencyService} from './services/currency';
 
 
 @NgModule({
@@ -18,13 +20,14 @@ import {ServiceSettings} from './services/settings';
     ],
     imports: [
         BrowserModule,
-        RouterModule.forRoot(routes)
+        RouterModule.forRoot(routes),
+        HttpClientModule
     ],
     bootstrap: [
         App
     ],
     providers: [
-        CanActivateViaAuthGuard, ServiceSettings
+        CanActivateViaAuthGuard, ServiceSettings, CurrencyService
     ]
 })
 export class Module {

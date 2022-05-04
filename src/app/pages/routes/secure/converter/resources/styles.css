@@ -1,0 +1,20 @@
+.converting {
+    display: flex;
+    flex-direction: column;
+}
+
+.amount {
+    width: 200px;
+    font-size: 20px;
+    vertical-align: top;
+}
+
+.select-currency {
+    margin-left: 10px;
+    vertical-align: top;
+}
+
+.currency {
+    margin-bottom: 10px;
+    vertical-align: top;
+}
