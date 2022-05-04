@@ -3,3 +3,8 @@
     display: inline-block;
     width: 50px;
 }
+
+.dropdown-currency {
+    min-width: 300px;
+    max-width: 300px;
+}
