@@ -24,7 +24,7 @@ export class ConverterPage {
         public settings: ServiceSettings,
         private currency: CurrencyService
     ) {
-       this.update();
+        this.update();
     }
 
 
@@ -42,28 +42,32 @@ export class ConverterPage {
                     value: 1
                 })
 
-                this.selectedCurrencyTop = this.listCurrencies[0];
-                this.selectedCurrencyBottom = this.listCurrencies[0];
+                if (!this.selectedCurrencyTop) {
+                    this.selectedCurrencyTop = this.listCurrencies[0];
+                    this.selectedCurrencyBottom = this.listCurrencies[0];
+                }
             });
     }
 
     public selectCurrencyTop(event: any) {
         this.selectedCurrencyTop = event;
+        this.calcAmountCurrencyBottom();
     }
 
     public selectCurrencyBottom(event: any) {
         this.selectedCurrencyBottom = event;
+        this.calcAmountCurrencyTop();
     }
 
-    public calcAmountCurrencyTop(event: any) {
+    public calcAmountCurrencyTop() {
         this.update();
-        this.amountCurrencyTop = this.selectedCurrencyBottom.value * this.amountCurrencyBottom;
+        this.amountCurrencyTop = this.selectedCurrencyBottom.value * this.amountCurrencyBottom / this.selectedCurrencyTop.value;
         this.amountCurrencyTop = Math.round(this.amountCurrencyTop * 100) / 100;
     }
 
-    public calcAmountCurrencyBottom(event: any) {
+    public calcAmountCurrencyBottom() {
         this.update();
-        this.amountCurrencyBottom = this.selectedCurrencyTop.value.toString() * this.amountCurrencyTop;
+        this.amountCurrencyBottom = this.selectedCurrencyTop.value * this.amountCurrencyTop / this.selectedCurrencyBottom.value;
         this.amountCurrencyBottom = Math.round(this.amountCurrencyBottom * 100) / 100;
     }
 }

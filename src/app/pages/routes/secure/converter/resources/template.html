@@ -2,13 +2,13 @@
     <div class="converting">
         <div class="inline currency">
             <input class="amount" [(ngModel)]="amountCurrencyTop" placeholder="amount"
-                   (input)="calcAmountCurrencyBottom($event)">
+                   (input)="calcAmountCurrencyBottom()">
             <dropdown class="select-currency" style="position: absolute" [type]="'currency'" [list]="listCurrencies"
                       (onSelected)="selectCurrencyTop($event)"></dropdown>
         </div>
         <div class="inline currency">
             <input class="amount" [(ngModel)]="amountCurrencyBottom" placeholder="amount"
-                   (input)="calcAmountCurrencyTop($event)">
+                   (input)="calcAmountCurrencyTop()">
             <dropdown class="select-currency" [type]="'currency'" [list]="listCurrencies"
                       (onSelected)="selectCurrencyBottom($event)"></dropdown>
         </div>
