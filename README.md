@@ -8,7 +8,7 @@ Run `npm run build` to build the project. The build artifacts will be stored in 
 
 ## Development server
 
-Run `npm tun start:dev` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `npm run start:dev` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Development build
 
