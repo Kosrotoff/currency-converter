@@ -2,7 +2,7 @@
 
 ## Environment variables
 
-***
+File .env at the root of the project.
 
 ###### Template
 
@@ -28,8 +28,6 @@ MORGAN_FORMAT="dev"
 
 ## Scripts
 
-***
-
 ###### Production server
 
 Run `npm run start` for a production server. Navigate to `http://localhost:{env.PORT}`.
@@ -37,7 +35,7 @@ Run `npm run start` for a production server. Navigate to `http://localhost:{env.
 ###### Development server
 
 Run `npm run start:watch` for a dev server. Navigate to `http://localhost:{env.PORT}`. The application will
-automatically reload if you change any of the source files.
+automatically reload if you change any of the source files.<br>
 
 <br>
 <br>
@@ -46,9 +44,31 @@ automatically reload if you change any of the source files.
 
 # Frontend
 
-## Scripts
+## Environment variables
 
-***
+File src/environments/environment.prod.ts for production.<br>
+File src/environments/environment.ts for development server and tests.<br>
+
+###### Interface
+
+```
+export default interface EnvironmentInterface {
+    production: boolean;
+    delayBetweenRequestsToCrb: number;
+}
+```
+
+###### Example
+
+```
+// File environment.prod.ts
+export const environment: EnvironmentInterface = {
+    production: true,
+    delayBetweenRequestsToCrb: 20 * 1000
+};
+```
+
+## Scripts
 
 ###### Build
 
@@ -65,4 +85,4 @@ reload if you change any of the source files.
 
 ###### Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `npm run test` to execute the unit tests via [Karma](https://karma-runner.github.io).
