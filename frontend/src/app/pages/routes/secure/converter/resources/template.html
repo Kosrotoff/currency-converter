@@ -1,22 +1,22 @@
 <div class="converting" *ngIf="currencyList">
     <div class="currency">
-        <input type="text" class="amount" [(ngModel)]="amountCurrencyTop" placeholder="amount"
-               (input)="calcAmountCurrencyBottom()">
+        <input type="text" class="amount" [(ngModel)]="amountCurrencyLeft" placeholder="amount"
+               (input)="calcAmountCurrencyRight()">
         <div>
             <dropdown class="select-currency" [type]="'currency'"
                       [list]="currencyList.items"
-                      (onSelected)="selectCurrencyTop($event)"></dropdown>
+                      (onSelected)="selectCurrencyLeft($event)"></dropdown>
         </div>
     </div>
     <div class="res">
         =
     </div>
     <div class="currency">
-        <input type="text" class="amount" [(ngModel)]="amountCurrencyBottom" placeholder="amount"
-               (input)="calcAmountCurrencyTop()">
+        <input type="text" class="amount" [(ngModel)]="amountCurrencyRight" placeholder="amount"
+               (input)="calcAmountCurrencyLeft()">
         <div>
             <dropdown class="select-currency" [type]="'currency'" [list]="currencyList.items"
-                      (onSelected)="selectCurrencyBottom($event)"></dropdown>
+                      (onSelected)="selectCurrencyRight($event)"></dropdown>
         </div>
     </div>
 </div>

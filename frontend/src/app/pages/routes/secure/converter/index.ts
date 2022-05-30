@@ -3,8 +3,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CurrencyConversionService, CurrencyList} from '../../../../services/currency-conversion';
 import {Subscription} from 'rxjs';
 
-import {CurrencyListItem} from '../../../../services/currency-conversion/types';
-
 
 @Component({
     selector: 'converter-page',
@@ -21,17 +19,18 @@ export class ConverterPage implements OnInit, OnDestroy {
 
     // ----- [ PRIVATE PROPERTIES ] ------------------------------------------------------------------------------------
 
-    private convertSub: Subscription;
+    private converLefttSub: Subscription;
+    private converRighttSub: Subscription;
     private getCurrencyListSub: Subscription;
-    private selectedCurrencyTop: any;
-    private selectedCurrencyBottom: any;
+    private selectedCurrencyLeft: any;
+    private selectedCurrencyRight: any;
 
 
     // ----- [ PUBLIC PROPERTIES ] -------------------------------------------------------------------------------------
 
     public currencyList: CurrencyList;
-    public amountCurrencyTop: number;
-    public amountCurrencyBottom: number;
+    public amountCurrencyLeft: number;
+    public amountCurrencyRight: number;
     public errorMessage: string;
 
 
@@ -45,15 +44,15 @@ export class ConverterPage implements OnInit, OnDestroy {
     // ----- [ LIFECYCLE EVENTS ] --------------------------------------------------------------------------------------
 
     public ngOnInit(): void {
-        this.amountCurrencyTop = 0;
-        this.amountCurrencyBottom = 0;
+        this.amountCurrencyLeft = 0;
+        this.amountCurrencyRight = 0;
         this.errorMessage = '';
 
         this.getCurrencyListSub = this.currencyConverter.getCurrencyList().subscribe({
             next: (currencyList: CurrencyList): void => {
                 this.currencyList = currencyList;
-                this.selectedCurrencyTop = this.currencyList.items[0];
-                this.selectedCurrencyBottom = this.currencyList.items[0];
+                this.selectedCurrencyLeft = this.currencyList.items[0];
+                this.selectedCurrencyRight = this.currencyList.items[0];
 
                 if (!currencyList.dataRelevance) {
                     this.errorMessage = 'Не удалось обновить данные о курсе валют, для расчётов используются неактуальные данные.';
@@ -68,8 +67,11 @@ export class ConverterPage implements OnInit, OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        if (this.convertSub) {
-            this.convertSub.unsubscribe();
+        if (this.converLefttSub) {
+            this.converLefttSub.unsubscribe();
+        }
+        if (this.converRighttSub) {
+            this.converRighttSub.unsubscribe();
         }
         if (this.getCurrencyListSub) {
             this.getCurrencyListSub.unsubscribe();
@@ -79,21 +81,21 @@ export class ConverterPage implements OnInit, OnDestroy {
 
     // ----- [ PUBLIC METHODS ] ----------------------------------------------------------------------------------------
 
-    public selectCurrencyTop(event: any) {
-        this.selectedCurrencyTop = event
-        this.calcAmountCurrencyBottom();
+    public selectCurrencyLeft(event: any) {
+        this.selectedCurrencyLeft = event
+        this.calcAmountCurrencyRight();
     }
 
-    public selectCurrencyBottom(event: any) {
-        this.selectedCurrencyBottom = event;
-        this.calcAmountCurrencyBottom();
+    public selectCurrencyRight(event: any) {
+        this.selectedCurrencyRight = event;
+        this.calcAmountCurrencyRight();
     }
 
-    public calcAmountCurrencyTop() {
-        this.convertSub = this.currencyConverter.convert(this.selectedCurrencyBottom.code, this.amountCurrencyBottom, this.selectedCurrencyTop.code)
+    public calcAmountCurrencyLeft() {
+        this.converLefttSub = this.currencyConverter.convert(this.selectedCurrencyRight.code, this.amountCurrencyRight, this.selectedCurrencyLeft.code)
             .subscribe({
                 next: (result) => {
-                    this.amountCurrencyTop = result.amount;
+                    this.amountCurrencyLeft = result.amount;
                     if (!result.dataRelevance) {
                         this.errorMessage = 'Не удалось обновить данные о курсе валют, для расчётов используются неактуальные данные.';
                     } else {
@@ -106,11 +108,11 @@ export class ConverterPage implements OnInit, OnDestroy {
             });
     }
 
-    public calcAmountCurrencyBottom() {
-        this.convertSub = this.currencyConverter.convert(this.selectedCurrencyTop.code, this.amountCurrencyTop, this.selectedCurrencyBottom.code)
+    public calcAmountCurrencyRight() {
+        this.converRighttSub = this.currencyConverter.convert(this.selectedCurrencyLeft.code, this.amountCurrencyLeft, this.selectedCurrencyRight.code)
             .subscribe({
                 next: (result) => {
-                    this.amountCurrencyBottom = result.amount;
+                    this.amountCurrencyRight = result.amount;
                     if (!result.dataRelevance) {
                         this.errorMessage = 'Не удалось обновить данные о курсе валют, для расчётов используются неактуальные данные.';
                     } else {

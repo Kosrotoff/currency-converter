@@ -2,5 +2,6 @@ import EnvironmentInterface from './environment-interface';
 
 
 export const environment: EnvironmentInterface = {
-    production: false
+    production: false,
+    delayBetweenRequestsToCrb: 2 * 1000
 };

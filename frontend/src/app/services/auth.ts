@@ -20,10 +20,22 @@ export default class AuthService {
     private token: Token;
 
 
+    // ----- [ PRIVATE METHODS ] ---------------------------------------------------------------------------------------
+
+    private setToken(token: Token): void {
+        this.token = token;
+        if (this.token) {
+            localStorage.setItem('auth-token', this.token);
+        } else {
+            localStorage.removeItem('auth-token');
+        }
+    }
+
+
     // ----- [ PUBLIC METHODS ] ----------------------------------------------------------------------------------------
 
-    public register(user: User): Observable<{token: Token}> {
-        return this.http.post<({token: Token})>('api/auth/register', user);
+    public register(user: User): Observable<void> {
+        return this.http.post<(void)>('api/auth/register', user);
     }
 
     public login(user: User): Observable<{token: string}> {
@@ -31,20 +43,10 @@ export default class AuthService {
             .pipe(
                 tap(
                     ({token}) => {
-
                         this.setToken(token);
                     }
                 )
-            )
-    }
-
-    public setToken(token: Token): void {
-        this.token = token;
-        if (this.token) {
-            localStorage.setItem('auth-token', this.token);
-        } else {
-            localStorage.removeItem('auth-token');
-        }
+            );
     }
 
     public getToken(): Token {

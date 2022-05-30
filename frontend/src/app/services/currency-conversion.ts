@@ -1,16 +1,40 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable,} from 'rxjs';
+import {Observable} from 'rxjs';
 
-import {ConversionResult, CurrencyData, CurrencyList} from './types';
+import {environment} from '../../environments/environment';
 
 
-// Чтобы избежать превышения лимита запросов используется кэширование и задержка между запросами.
-const TIME_BETWEEN_REQUESTS = 20 * 1000;
+export type CurrencyData = {
+    [key: string]: {
+        CharCode: string;
+        ID: string;
+        Name: string;
+        Nominal: number;
+        NumCode: string;
+        Previous: number;
+        Value: number;
+    };
+};
+
+export type ConversionResult = {
+    dataRelevance: boolean;
+    amount: number;
+};
+
+export type CurrencyList = {
+    dataRelevance: boolean;
+    items: CurrencyListItem[];
+};
+
+export type CurrencyListItem = {
+    code: string;
+    name: string;
+};
 
 
 @Injectable()
-export default class CurrencyConversionService {
+export class CurrencyConversionService {
     constructor(
         private httpClient: HttpClient
     ) {
@@ -27,7 +51,7 @@ export default class CurrencyConversionService {
     // ----- [ PRIVATE METHODS ] ---------------------------------------------------------------------------------------
 
     private updateData(): Promise<CurrencyData> {
-        if (this.data && (Date.now() - this.lastRequestTime < TIME_BETWEEN_REQUESTS)) {
+        if (this.data && (Date.now() - this.lastRequestTime < environment.delayBetweenRequestsToCrb)) {
             return Promise.resolve(this.data);
         }
 
@@ -51,15 +75,17 @@ export default class CurrencyConversionService {
 
                             resolve(this.data);
                         },
-                        error: (error) => reject(new Error(error))
+                        error: error => {
+                            reject(error)
+                        }
                     }
                 );
         });
     }
 
-    private _getCurrencyList(data: CurrencyData): CurrencyList {
+    private _getCurrencyList(data: CurrencyData, dataRelevance: boolean): CurrencyList {
         return {
-            dataRelevance: (data == this.data),
+            dataRelevance,
             items: Object.entries(data).map(([code, info]) => ({
                 code,
                 name: info.Name
@@ -67,13 +93,13 @@ export default class CurrencyConversionService {
         };
     }
 
-    private _convert(data: CurrencyData, currencyCodeIn: string, amount: number, currencyCodeTo: string): ConversionResult {
+    private _convert(data: CurrencyData, currencyCodeIn: string, amount: number, currencyCodeTo: string, dataRelevance: boolean): ConversionResult {
         const currencyIn = data[currencyCodeIn];
         const currencyTo = data[currencyCodeTo];
         const amountInRub = (currencyIn.Value / currencyIn.Nominal) * amount;
 
         return {
-            dataRelevance: (data == this.data),
+            dataRelevance,
             amount: amountInRub * (currencyTo.Value / currencyTo.Nominal)
         };
     }
@@ -85,12 +111,12 @@ export default class CurrencyConversionService {
         return new Observable<CurrencyList>((observer) => {
             this.updateData()
                 .then((data: CurrencyData): void => {
-                    observer.next(this._getCurrencyList(data))
+                    observer.next(this._getCurrencyList(data, true))
                     observer.complete();
                 })
                 .catch(error => {
                     if (this.data) {
-                        observer.next(this._getCurrencyList(this.data))
+                        observer.next(this._getCurrencyList(this.data, false))
                     } else {
                         observer.error(new Error(error));
                     }
@@ -103,12 +129,12 @@ export default class CurrencyConversionService {
         return new Observable<ConversionResult>((observer) => {
             this.updateData()
                 .then((data: CurrencyData): void => {
-                    observer.next(this._convert(data, currencyCodeIn, amount, currencyCodeTo))
+                    observer.next(this._convert(data, currencyCodeIn, amount, currencyCodeTo, true))
                     observer.complete();
                 })
                 .catch(error => {
                     if (this.data) {
-                        observer.next(this._convert(this.data, currencyCodeIn, amount, currencyCodeTo))
+                        observer.next(this._convert(this.data, currencyCodeIn, amount, currencyCodeTo, false))
                     } else {
                         observer.error(new Error(error));
                     }
