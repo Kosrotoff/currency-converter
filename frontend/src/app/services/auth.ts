@@ -20,18 +20,6 @@ export default class AuthService {
     private token: Token;
 
 
-    // ----- [ PRIVATE METHODS ] ---------------------------------------------------------------------------------------
-
-    private setToken(token: Token): void {
-        this.token = token;
-        if (this.token) {
-            localStorage.setItem('auth-token', this.token);
-        } else {
-            localStorage.removeItem('auth-token');
-        }
-    }
-
-
     // ----- [ PUBLIC METHODS ] ----------------------------------------------------------------------------------------
 
     public register(user: User): Observable<void> {
@@ -47,6 +35,15 @@ export default class AuthService {
                     }
                 )
             );
+    }
+
+    public setToken(token: Token): void {
+        this.token = token;
+        if (this.token) {
+            localStorage.setItem('auth-token', this.token);
+        } else {
+            localStorage.removeItem('auth-token');
+        }
     }
 
     public getToken(): Token {

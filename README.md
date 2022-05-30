@@ -1,3 +1,14 @@
+# Currency Converter
+
+Run `npm install` or `npm i` to install the backend and frontend dependencies.<br>
+Run `npm run start` to start the server and client.<br>
+Run `npm run start:watch` to start the server and client in development mode.<br>
+<br>
+Don't forget to set the environment variables before starting the server and client!<br>
+<br>
+<br>
+<br>
+
 # Backend
 
 ## Environment variables
@@ -36,8 +47,6 @@ Run `npm run start` for a production server. Navigate to `http://localhost:{env.
 
 Run `npm run start:watch` for a dev server. Navigate to `http://localhost:{env.PORT}`. The application will
 automatically reload if you change any of the source files.<br>
-
-<br>
 <br>
 <br>
 <br>

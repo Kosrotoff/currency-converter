@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "postinstall": "concurrently \"cd backend && npm install\" \"cd frontend && npm install\"",
+    "start": "concurrently \"cd backend && npm run start\" \"cd frontend && npm run start\"",
+    "start:watch": "concurrently \"cd backend && npm run start:watch\" \"cd frontend && npm run start:watch\""
+  },
+  "dependencies": {
+    "concurrently": "^7.2.1"
+  }
+}
