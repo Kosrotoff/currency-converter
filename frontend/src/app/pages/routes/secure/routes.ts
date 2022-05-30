@@ -1,5 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 import {Routes} from '@angular/router';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
@@ -19,7 +21,9 @@ const routes: Routes = [
         RouterModule.forChild(routes)
     ],
     exports: [
-        RouterModule
+        RouterModule,
+        CommonModule,
+        FormsModule
     ],
     providers: [
         AuthGuard,

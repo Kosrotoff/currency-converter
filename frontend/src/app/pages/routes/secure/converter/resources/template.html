@@ -1,9 +1,26 @@
-<a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
+<div class="converting" *ngIf="currencyList">
+    <div class="currency">
+        <input type="text" class="amount" [(ngModel)]="amountCurrencyTop" placeholder="amount"
+               (input)="calcAmountCurrencyBottom()">
+        <div>
+            <dropdown class="select-currency" [type]="'currency'"
+                      [list]="currencyList.items"
+                      (onSelected)="selectCurrencyTop($event)"></dropdown>
+        </div>
+    </div>
+    <div class="res">
+        =
+    </div>
+    <div class="currency">
+        <input type="text" class="amount" [(ngModel)]="amountCurrencyBottom" placeholder="amount"
+               (input)="calcAmountCurrencyTop()">
+        <div>
+            <dropdown class="select-currency" [type]="'currency'" [list]="currencyList.items"
+                      (onSelected)="selectCurrencyBottom($event)"></dropdown>
+        </div>
+    </div>
+</div>
 
-<ul id='dropdown1' class='dropdown-content'>
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-    <li>4</li>
-    <li>5</li>
-</ul>
+<div class="error-wrapper" *ngIf="errorMessage">
+    <span class="red-text error-text">{{errorMessage}}</span>
+</div>

@@ -1,0 +1,10 @@
+.char-code {
+    font-weight: bold;
+    display: inline-block;
+    width: 50px;
+}
+
+.dropdown-currency {
+    min-width: 370px;
+    max-width: 370px;
+}

@@ -1,0 +1,21 @@
+<div class="dropdown-box" (mouseenter)="isActive=true" (mouseleave)="isActive = false">
+    <div class="dropdown-item-wrapper" *ngIf="!isActive && list[selected]">
+        <div class="dropdown-item">
+            <ng-template [ngIf]="type === 'currency'">
+                <dropdown-currency class="flex-node" [object]="list[selected]"></dropdown-currency>
+            </ng-template>
+        </div>
+    </div>
+
+    <div class="dropdown-list" *ngIf="isActive" (mouseleave)="isActive = false">
+        <ul>
+            <li class="dropdown-item-wrapper" *ngFor="let item of list">
+                <div class="dropdown-item" [class.active]="item==list[selected]" (click)="click(item);isActive=false">
+                    <ng-template [ngIf]="type === 'currency'">
+                        <dropdown-currency class="flex-node" [object]="item"></dropdown-currency>
+                    </ng-template>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

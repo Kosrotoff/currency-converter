@@ -31,7 +31,7 @@ export default class AuthService {
             .pipe(
                 tap(
                     ({token}) => {
-                        localStorage.setItem('auth-token', token);
+
                         this.setToken(token);
                     }
                 )
@@ -40,6 +40,11 @@ export default class AuthService {
 
     public setToken(token: Token): void {
         this.token = token;
+        if (this.token) {
+            localStorage.setItem('auth-token', this.token);
+        } else {
+            localStorage.removeItem('auth-token');
+        }
     }
 
     public getToken(): Token {
