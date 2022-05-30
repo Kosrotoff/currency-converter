@@ -6,7 +6,6 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {ConverterPage} from './converter';
 
 import AuthGuard from '../../../services/guards/auth-guard';
-
 import TokenInterceptor from '../../../middlewares/token-interceptor';
 
 

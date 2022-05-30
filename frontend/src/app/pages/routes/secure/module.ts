@@ -4,6 +4,8 @@ import {SecureRoutingModule} from './routes';
 
 import {ConverterPage} from './converter';
 
+import CurrencyConversionService from '../../../services/currency-conversion';
+
 
 @NgModule({
     declarations: [
@@ -12,6 +14,9 @@ import {ConverterPage} from './converter';
     imports: [
         SecureRoutingModule
     ],
+    providers: [
+        CurrencyConversionService
+    ]
 })
 export class SecureModule {
 }

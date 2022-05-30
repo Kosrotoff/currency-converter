@@ -20,7 +20,7 @@ import {LoginPage} from './auth/login';
         CommonModule,
         FormsModule,
         ReactiveFormsModule
-    ],
+    ]
 })
 export class PublicModule {
 }

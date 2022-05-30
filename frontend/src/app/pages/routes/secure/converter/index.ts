@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 
+import CurrencyConversionService from '../../../../services/currency-conversion';
+
 
 @Component({
     selector: 'converter-page',
@@ -8,4 +10,8 @@ import {Component} from '@angular/core';
     styleUrls: ['./resources/styles.css']
 })
 export class ConverterPage {
+    constructor(
+        private currencyConverter: CurrencyConversionService
+    ) {
+    }
 }
