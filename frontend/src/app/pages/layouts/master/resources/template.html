@@ -1,0 +1,29 @@
+<div class="page">
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <div class="logo brand-logo" routerLink="/">
+                    <img src="assets/img/logo.png">
+                </div>
+
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li *ngIf="!isAuthenticated()"><a routerLink="/login">Войти</a></li>
+                    <li *ngIf="!isAuthenticated()"><a routerLink="/registration">Зарегистрироваться</a></li>
+
+                    <li *ngIf="isAuthenticated()"><a routerLink="/converter">Конвертер</a></li>
+                    <li *ngIf="isAuthenticated()"><a routerLink="/" (click)="logout()">Выйти</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="flex">
+        <div class="left-menu"></div>
+
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+    <footer></footer>
+</div>

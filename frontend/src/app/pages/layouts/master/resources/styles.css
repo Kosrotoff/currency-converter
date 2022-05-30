@@ -1,0 +1,95 @@
+.page {
+    min-height: 100vh;
+    background-color: #f5f5f5;
+}
+
+header {
+    height: 64px;
+    background-color: #202131;
+    border-bottom: 1px solid #374151;
+}
+
+nav {
+    background-color: #202131;
+    margin-left: 240px;
+    width: 66%;
+    min-height: 100%;
+    padding: 0 5px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    min-height: 64px;
+    width: 100px;
+    cursor: pointer;
+}
+.logo img {
+    margin: auto auto;
+    width: auto;
+    height: 60px;
+}
+
+.menu-buttons {
+    width: 300px;
+}
+
+.menu-button {
+    font-size: 20px;
+    color: #f5f5f5;
+    padding: 5px;
+    height: min-content;
+    margin: auto 5px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.menu-button:hover {
+    color: #b45d5b;
+}
+
+.button {
+    border: 2px solid #f5f5f5;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #f5f5f5;
+    padding: 5px;
+    height: min-content;
+    margin: auto 5px;
+    cursor: pointer;
+}
+.button:hover {
+    border: 2px solid #a94442;
+    color: #b45d5b;
+}
+
+.account-buttons {
+    width: 100%;
+    justify-content: right;
+}
+
+.left-menu {
+    min-height: calc(100vh - 64px);
+    width: 240px;
+    background-color: #202131;
+    border-right: 1px solid #374151;
+    padding: 20px 0 20px 25px;
+}
+
+.left-menu-button {
+    font-size: 18px;
+    color: #f5f5f5;
+    padding: 5px;
+    height: min-content;
+    margin: auto 5px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.left-menu-button:hover {
+    color: #b45d5b;
+}
+
+.content {
+    width: 66%;
+    padding: 50px 30px;
+    border-right: 1px solid #e1e1e6;
+}
