@@ -63,6 +63,7 @@ File src/environments/environment.ts for development server and tests.<br>
 ```
 export default interface EnvironmentInterface {
     production: boolean;
+    serverUrl: string;
     delayBetweenRequestsToCrb: number;
 }
 ```
@@ -73,6 +74,7 @@ export default interface EnvironmentInterface {
 // File environment.prod.ts
 export const environment: EnvironmentInterface = {
     production: true,
+    serverUrl: 'http://localhost:5000',
     delayBetweenRequestsToCrb: 20 * 1000
 };
 ```

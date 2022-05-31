@@ -1,9 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
-import {Token, User} from '../types';
-
 import {Observable, tap} from 'rxjs';
+
+import {environment} from '../../environments/environment';
+
+import {Token, User} from '../types';
 
 
 @Injectable()
@@ -23,11 +25,11 @@ export default class AuthService {
     // ----- [ PUBLIC METHODS ] ----------------------------------------------------------------------------------------
 
     public register(user: User): Observable<void> {
-        return this.http.post<(void)>('api/auth/register', user);
+        return this.http.post<(void)>(`${environment.serverUrl}/api/auth/register`, user);
     }
 
     public login(user: User): Observable<{token: string}> {
-        return this.http.post<({token: string})>('api/auth/login', user)
+        return this.http.post<({token: string})>(`${environment.serverUrl}/api/auth/login`, user)
             .pipe(
                 tap(
                     ({token}) => {

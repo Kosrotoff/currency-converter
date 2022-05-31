@@ -100,7 +100,7 @@ export class CurrencyConversionService {
 
         return {
             dataRelevance,
-            amount: amountInRub / (currencyTo.Value / currencyTo.Nominal)
+            amount: Math.round(amountInRub / (currencyTo.Value / currencyTo.Nominal) * 100) / 100
         };
     }
 

@@ -1,8 +1,9 @@
 import {TestBed} from '@angular/core/testing';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 
+import {environment} from '../environments/environment';
+
 import AuthService from '../app/services/auth';
-import cbrResponse from './cbrResponse';
 
 
 describe('Сервис аутентификации', () => {
@@ -37,7 +38,7 @@ describe('Сервис аутентификации', () => {
                 }
             });
 
-        httpMock.expectOne('api/auth/login').flush({token: 'token'});
+        httpMock.expectOne(`${environment.serverUrl}/api/auth/login`).flush({token: 'token'});
         httpMock.verify();
     });
 
@@ -52,7 +53,7 @@ describe('Сервис аутентификации', () => {
                 }
             });
 
-        httpMock.expectOne('api/auth/login').flush({token: 'token'});
+        httpMock.expectOne(`${environment.serverUrl}/api/auth/login`).flush({token: 'token'});
         httpMock.verify();
     });
 
@@ -67,7 +68,7 @@ describe('Сервис аутентификации', () => {
                 }
             });
 
-        httpMock.expectOne('api/auth/login').flush({token: 'token'});
+        httpMock.expectOne(`${environment.serverUrl}/api/auth/login`).flush({token: 'token'});
         httpMock.verify();
     });
 
@@ -82,7 +83,7 @@ describe('Сервис аутентификации', () => {
                 }
             });
 
-        httpMock.expectOne('api/auth/login').flush({token: 'token'});
+        httpMock.expectOne(`${environment.serverUrl}/api/auth/login`).flush({token: 'token'});
         httpMock.verify();
     });
 });

@@ -3,9 +3,9 @@ import {HttpClientTestingModule, HttpTestingController} from '@angular/common/ht
 
 import {ConversionResult, CurrencyList, CurrencyConversionService} from '../app/services/currency-conversion';
 
-import cbrResponse from './cbrResponse';
-
 import {environment} from '../environments/environment';
+
+import cbrResponse from './cbrResponse';
 
 
 const currencyData = Object.assign({
